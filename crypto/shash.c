@@ -85,7 +85,7 @@ EXPORT_SYMBOL_GPL(crypto_shash_setkey);
 static inline unsigned int shash_align_buffer_size(unsigned len,
 						   unsigned long mask)
 {
-	typedef u8 __aligned_largest u8_aligned;
+	typedef u8 u8_aligned __attribute__ ((aligned(__alignof__(u64))));
 	return len + (mask & ~(__alignof__(u8_aligned) - 1));
 }
 
@@ -134,7 +134,7 @@ static int shash_final_unaligned(struct shash_desc *desc, u8 *out)
 	struct shash_alg *shash = crypto_shash_alg(tfm);
 	unsigned int ds = crypto_shash_digestsize(tfm);
 	u8 ubuf[shash_align_buffer_size(ds, alignmask)]
-		__aligned_largest;
+		__attribute__ ((aligned(__alignof__(u64))));
 	u8 *buf = PTR_ALIGN(&ubuf[0], alignmask + 1);
 	int err;
 
