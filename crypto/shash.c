@@ -98,7 +98,7 @@ static int shash_update_unaligned(struct shash_desc *desc, const u8 *data,
 	unsigned int unaligned_len = alignmask + 1 -
 				     ((unsigned long)data & alignmask);
 	u8 ubuf[shash_align_buffer_size(unaligned_len, alignmask)]
-		__aligned_largest;
+		__attribute__ ((aligned(__alignof__(u64))));
 	u8 *buf = PTR_ALIGN(&ubuf[0], alignmask + 1);
 	int err;
 
