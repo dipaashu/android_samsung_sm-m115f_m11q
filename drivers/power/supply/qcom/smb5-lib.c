@@ -243,7 +243,7 @@ static void smblib_notify_device_mode(struct smb_charger *chg, bool enable)
 }
 
 /*HS60 add for P220517-05405 add usb_date_enable by duanweiping at 20220613 start*/
-inline void notify_device_mode(struct smb_charger *chg, bool enable)
+static inline __attribute__((always_inline)) void notify_device_mode(struct smb_charger *chg, bool enable)
 {
 	smblib_notify_device_mode(chg,enable);
 }
@@ -278,7 +278,7 @@ static void smblib_notify_usb_host(struct smb_charger *chg, bool enable)
 }
 
 /*HS60 add for P220517-05405 add usb_date_enable by duanweiping at 20220613 start*/
-inline void notify_usb_host(struct smb_charger *chg, bool enable)
+static inline __attribute__((always_inline)) void notify_usb_host(struct smb_charger *chg, bool enable)
 {
 	smblib_notify_usb_host(chg,enable);
 }
