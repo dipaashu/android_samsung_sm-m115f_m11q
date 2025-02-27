@@ -45,6 +45,7 @@ enum reboot_type reboot_type = BOOT_ACPI;
 int reboot_force;
 // To prevent kernel panic by EIO during shutdown
 int ignore_fs_panic;
+EXPORT_SYMBOL(ignore_fs_panic);
 
 /*
  * If set, this is used for preparing the system to power off.
